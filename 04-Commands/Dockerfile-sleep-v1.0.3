@@ -1,0 +1,5 @@
+FROM --platform=linux/amd64 ubuntu:latest
+COPY scripts/* /tmp/
+RUN ["chmod","+x","-R","/tmp/"]
+ENTRYPOINT ["/tmp/sleep.sh"]
+CMD ["10"]

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-dp
+spec:
+  template:
+    metadata:
+      name: sleeper-pod
+      labels:
+        app: sleeper
+    spec:
+      containers: 
+        - name: sleeper-container
+          image: robsonlab.azurecr.io/sleeper:v1.0.3
+          command: 
+            - sleep
+          args:
+            - "100"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sleeper

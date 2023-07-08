@@ -1,0 +1,3 @@
+FROM ubuntu:latest
+COPY scripts/sleep.sh /tmp/
+ENTRYPOINT ["/bin/bash","/tmp/sleep.sh"]

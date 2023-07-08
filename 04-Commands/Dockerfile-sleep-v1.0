@@ -1,0 +1,3 @@
+FROM ubuntu:latest
+COPY scripts/* /tmp/
+CMD ["/bin/bash","/tmp/sleep.sh"]

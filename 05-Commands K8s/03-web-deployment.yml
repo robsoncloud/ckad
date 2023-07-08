@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: dp-web
+spec:
+  template:
+    metadata:
+     name: pod-web
+     labels:
+      app: web
+    spec:
+     containers:
+      - name:  web-container
+        image: robsonlab.azurecr.io/ubuntu-web:v1.0
+        args:
+         - "--color"
+         - "blue"
+  replicas: 3
+  selector:
+    matchLabels:
+     app: web

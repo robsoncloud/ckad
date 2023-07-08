@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sleeper
+  labels: 
+    app: sleeper
+    version: v1.0.3
+spec:
+  containers:
+    - name: sleeper-container
+      image: robsonlab.azurecr.io/sleeper:v1.0.3

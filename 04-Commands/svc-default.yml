@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  creationTimestamp: "2023-07-01T23:36:56Z"
+  name: default
+  namespace: default
+  resourceVersion: "322"
+  uid: 4334fcae-537a-40d7-b37b-a89b5f8de8a3
+imagePullSecrets:
+  - name: azure-acr

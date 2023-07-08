@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-cm
+spec:
+  containers:
+   - name: my-pod-cm
+     image: robsonlab.azurecr.io/ubuntu-web:v1.1
+     args: [ "--color","red" ]
+     ports:
+      - containerPort: 8080
+     envFrom:
+      - configMapRef:
+          name: my-config-map

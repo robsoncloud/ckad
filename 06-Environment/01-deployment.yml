@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-web-env
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web-env
+  template:
+    metadata:
+      name: my-web-env-pod
+      labels:
+        app: web-env
+    spec:
+      containers:
+        - name: web-env-container
+          image: robsonlab.azurecr.io/ubuntu-web:v1.1
+          args: ["--color", "pink"]
+          env:
+            - name: USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: USERNAME
+            
+          ports:
+            - containerPort: 8080
