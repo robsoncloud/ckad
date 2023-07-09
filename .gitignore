@@ -1,1 +1,4 @@
 flask/
+node_modules/
+__pycache__/
+package-lock.json

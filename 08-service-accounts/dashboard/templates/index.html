@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowbite Flask</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
+</head>
+
+<body>
+    <!-- NAV -->
+    <nav class="relative container bg-slate-100 mx-auto p-6">
+        <!-- Flex -->
+        <div class="flex items-center justify-between">
+            <!-- Logo  -->
+            <div class="pt-2 font-bold uppercase">{{ app_name }}</div>
+
+            <!-- Menu Items -->
+            <div class="hidden md:flex space-x-6">
+                <a href="#" class="hover:bg-slate-500 cursor-pointer">Pricing</a>
+                <a href="#" class="hover:bg-slate-500 ">About Us</a>
+                <a href="#" class="hover:bg-slate-500 ">Careers</a>
+                <a href="#" class="hover:bg-slate-500 ">Community</a>
+            </div>
+
+            <!-- Button -->
+            <a href=""
+                class="hidden md:block p-3 px-6 pt-2 text-white bg-red-500 rounded-full baseline hover:bg-red-300">
+                Login
+            </a>
+
+        </div>
+
+        <!-- Hero Section -->
+        <section>
+            <!-- Flex Container -->
+            <div
+                class="container max-h-max  flex flex-col-reverse md:flex-row items-center px-6 mx-auto mt-10 space-y-0 md:space-y-0">
+                <!-- Left Item -->
+                <div class="flex flex-col mb-32 space-y-12 md:w-1/2 max-h-max  ">
+                    <h1 class="max-w-md text-xl font-bold text-center md:text-2xl md:text-left">
+                        My Pods 
+                    </h1>
+                    <ul class="bg-slate-200 py-4 px-4 rounded-md space-y-3">
+
+                        {% for item in data %}
+                            {% if item.phase == 'Running' %}
+                                <li class="bg-green-200 py-2 px-4 rounded-md hover:shadow-md hover:cursor-pointer hover:scale-105 transform transition duration-y">{{ item.name }}</li>
+                            {% elif item.phase == 'Pending' %}
+                                <li class="bg-yellow-200 py-2 px-4 rounded-md">{{ item.name }}</li>
+                            {% else %}
+                                <li class="bg-red-200 py-2 px-4 rounded-md">{{ item.name }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <!-- List -->
+                <div>
+
+
+                </div>
+            </div>
+        </section>
+
+    </nav>
+</body>
+
+</html>
