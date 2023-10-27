@@ -35,7 +35,11 @@ def main():
         for item in result_data['items']:
             name = item['metadata']['name']
             phase = item['status']['phase']
-            items.append({'name': name, 'phase': phase})
+            ip = item['status']['podIP']
+            sa = item['spec']['serviceAccountName']
+            node = item['spec']['nodeName']
+            containers = item['spec']['containers']
+            items.append({'name': name, 'phase': phase, 'ip': ip, 'sa': sa, 'node': node, 'containers': len(containers)})
 
         # for key, value in result_data.items():
         #  print(value.item)

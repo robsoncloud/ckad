@@ -39,28 +39,52 @@
             <div
                 class="container max-h-max  flex flex-col-reverse md:flex-row items-center px-6 mx-auto mt-10 space-y-0 md:space-y-0">
                 <!-- Left Item -->
-                <div class="flex flex-col mb-32 space-y-12 md:w-1/2 max-h-max  ">
-                    <h1 class="max-w-md text-xl font-bold text-center md:text-2xl md:text-left">
-                        My Pods 
+                <div class="flex flex-col mb-32 md:w-full max-h-max  ">
+                    <h1 class="max-w-full text-xl font-bold text-center md:text-2xl md:text-left ">
+                        My Pods
                     </h1>
-                    <ul class="bg-slate-200 py-4 px-4 rounded-md space-y-3">
 
-                        {% for item in data %}
-                            {% if item.phase == 'Running' %}
-                                <li class="bg-green-200 py-2 px-4 rounded-md hover:shadow-md hover:cursor-pointer hover:scale-105 transform transition duration-y">{{ item.name }}</li>
-                            {% elif item.phase == 'Pending' %}
-                                <li class="bg-yellow-200 py-2 px-4 rounded-md">{{ item.name }}</li>
-                            {% else %}
-                                <li class="bg-red-200 py-2 px-4 rounded-md">{{ item.name }}</li>
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
+
+                    <table class="min-w-full text-left font-light border-spacing-1">
+                        <thead class="border-b font-medium dark:border-neutral-500">
+                            <tr>
+                                <th class="py-4 ">Pod</th>
+                                <th class="py-4 ">Status</th>
+                                <th class="py-4 ">Containers</th>
+                                <th class="py-4 ">Service Account</th>
+                                <th class="py-4 ">IP</th>
+                                <th class="py-4 ">Node</th>
+                            </tr>
+                        </thead>
+                        <tbody class="">
+
+                            {% for item in data %}
+
+                            <tr class="border-b dark:border-neutral-500 relative">
+                                <td class="whitespace-nowrap py-2">{{ item.name }}</td>
+                                {% if item.phase == 'Running' %}
+                                    <td class="whitespace-nowrap py-2 text-green-700">{{ item.phase }}</td>
+                                {% elif item.phase == 'Pending' %}
+                                    <td class="absolute mx-auto top-[6px]"><span class="border-separate border-spacing-10 border border-slate-400 bg-yellow-400 text-white font-bold p-1 text-xs rounded-full">{{ item.phase }}</span></td>
+                                {% else %}
+                                    <td class="whitespace-nowrap py-2 text-red-700">{{ item.phase }}</td>
+                                {% endif %}
+                                <td class="whitespace-nowrap py-2">{{ item.containers }}</td>
+                                <td class="whitespace-nowrap py-2">{{ item.sa }}</td>
+                                <td class="whitespace-nowrap py-2">{{ item.ip }}</td>
+                                <td class="whitespace-nowrap py-2">{{ item.node }}</td>
+                                
+                            </tr>
+
+
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+
+
                 </div>
-                <!-- List -->
-                <div>
 
-
-                </div>
             </div>
         </section>
 
