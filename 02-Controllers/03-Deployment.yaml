@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-dp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-dp-app
+  template:
+    metadata:
+      name: my-dp-app
+      labels:
+        app: my-dp-app
+    spec:
+      containers:
+        - name: my-dp-app-cn
+          image: nginx
