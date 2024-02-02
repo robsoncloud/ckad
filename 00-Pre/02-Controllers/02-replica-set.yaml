@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: my-rs
+spec:
+  replicas: 5
+  template:
+    metadata:
+      name: app01
+      labels: 
+        app: app01
+        type: front-end
+    spec: 
+      containers:
+        - name: app01-cn
+          image: nginx
+  selector:
+    matchLabels:
+      app: app01
+      type: front-end
