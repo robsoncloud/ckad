@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dp-color
+  labels:
+    type: deployment
+spec: 
+  replicas: 3
+  template:
+    metadata:
+      name: color-pod
+      labels:
+        app: color
+    spec:
+      containers:
+        - name: color-cn
+          image: robsonlab.azurecr.io/webapp-color:latest
+          ports:
+            - containerPort: 8080
+          args:
+            - "--color"
+            - "pink"
+  selector:
+    matchLabels:
+      app: color

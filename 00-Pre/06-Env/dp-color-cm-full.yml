@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: dp-color-cm-full
+  name: dp-color-cm-full
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dp-color-cm-full
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: dp-color-cm-full
+    spec:
+      containers:
+      - command:
+        - python
+        - app.py
+        image: robsonlab.azurecr.io/webapp-color:latest
+        name: webapp-color
+        ports:
+        - containerPort: 8080
+        envFrom:
+         - configMapRef:
+            name: cm-color-full
+        resources: {}
+status: {}

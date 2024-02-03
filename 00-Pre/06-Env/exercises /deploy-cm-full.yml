@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dp-color-cm-full
+spec:
+  replicas: 2
+  template:
+    metadata:
+      name: color-cm-full-pod
+      labels:
+        app: color-cm-full
+    spec:
+      containers:
+        - name: color-cm-full-cn
+          image: robsonlab.azurecr.io/webapp-color:latest
+          ports:  
+            - containerPort: 8080
+          command: ["python","app.py"]
+          envFrom:
+            - configMapRef:
+                name: cm-color
+  selector:
+    matchLabels:
+      app: color-cm-full
+
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-color
+data:
+  APP_COLOR: green
+  APP_KEY: 1234abc@

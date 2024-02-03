@@ -1,0 +1,9 @@
+FROM python:3.10-alpine
+RUN pip install flask
+RUN adduser --disabled-password --gecos '' webapp
+COPY . /app
+WORKDIR /app
+EXPOSE 8080
+ENTRYPOINT [ "python","app.py" ]
+USER "webapp"
+CMD [ "--color","pink" ]

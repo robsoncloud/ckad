@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dp-color-env
+spec:
+  replicas: 2
+  template:
+    metadata:
+      name: color-pod-env
+      labels:
+        app: color-env
+    spec:
+      containers:
+        - name: color-cn-env
+          image: robsonlab.azurecr.io/webapp-color:latest
+          command: ["python","app.py"]
+          ports:
+            - containerPort: 8080
+          env:
+            - name: APP_COLOR
+              value: red
+  selector:
+    matchLabels:
+      app: color-env
+
+
+# By default this image use the CMD as parameter for the ENTRYPOINT 
+# and we need to replace it using the command property 
+# that thus will get rid of the args --color

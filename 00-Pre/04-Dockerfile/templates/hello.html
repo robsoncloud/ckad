@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-  </head>
-  <body style="background-color: {{ color }};">
+</head>
+<body style="background-color: {{ color }};">
     <div style="color: white;">
-      {%if name %}
-      <h1>Hello from {{ name }}</h1>
-      {% else %}
-      <h1>Hello World</h1>
-      {% endif %}
+        {% if name %}
+        <h2>Welcome, {{ name }}!</h2>
+        {% else %}
+        <h2>Welcome, user!</h2>
+        {% endif %}
     </div>
-  </body>
+</body>
 </html>
