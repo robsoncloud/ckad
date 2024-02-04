@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/main.css') }}"
+    />
+    <title>Document</title>
+  </head>
+  <body style="background-color: {{ color }};">
+    <div class="main">
+      {% if db_connect_result %}
+     
+      <h3>Successfully connected to the PostgreSQL database.</h3>
+      {% else %}
+     
+      <h3>Failed connecting to the PostgreSQL database.</h3>
+      {% endif %} {% if debug %}
+      <h2>{{ debug }}</h2>
+      {% endif %} {% if name %}
+      <p>From {{ name }}!</p>
+      {% endif %} {% if contents %}
+      <textarea rows="10" cols="50">
+    {{ contents }}
+  </textarea
+      >
+      {% endif %}
+    </div>
+  </body>
+</html>
