@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: dp-webapp-backend-v2
+  name: dp-webapp-backend-v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dp-webapp-backend-v2
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: dp-webapp-backend-v2
+    spec:
+      serviceAccountName: webapp-sa
+      containers:
+      - image: robsonlab.azurecr.io/webapp-backend:v2
+        name: webapp-backend
+        ports:
+        - containerPort: 8000
+      imagePullSecrets:
+       - name: azure-acr  
+status: {}

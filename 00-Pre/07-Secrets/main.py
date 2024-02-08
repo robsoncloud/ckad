@@ -1,15 +1,14 @@
-from db.database import Database
-
+from db.database import DatabaseHandler
 from flask import Flask
 from flask import render_template
 
 import os
 import socket
 
-DB_Name = os.environ.get('DB_Name') 
-DB_Host = os.environ.get('DB_Host')
+DB_Name = os.environ.get('DB_Name')
 DB_User = os.environ.get('DB_User')
 DB_Password = os.environ.get('DB_Password')
+DB_Host = os.environ.get('DB_Host')
 DB_Port = os.environ.get('DB_Port')
 
 
@@ -19,51 +18,29 @@ app = Flask(__name__)
 def default():
     db_connect_result = False
     err_message = ""
-    
     try:
-        
-        db_handler = Database(DB_Name, DB_User, DB_Host, DB_Password, DB_Port)
+        db_handler = DatabaseHandler(DB_Name, DB_User, DB_Password, DB_Host, DB_Port)
         db_handler.connect()
         color = '#39b54b'
         db_connect_result = True
         db_handler.close()
     except Exception as e:
-        color = '#ff3f3f'
+        print(f"Connection to DB has failed. Error: ${e}")
+        db_connect_result = False
         err_message = str(e)
-    
-    return render_template("default.html", debug="Enviroment Variables: DB_Host: "+ (os.environ.get('DB_Host') or "Not Set")+" DB_Name: "+ (os.environ.get('DB_Name') or "Not Set")+" DB_User: "+ ((os.environ.get('DB_User')or "Not Set") or "Not Set")+" DB_Password: "+ (os.environ.get('DB_Password')or "Not Set")+" DB_Port: "+(os.environ.get('DB_Port')or "Not Set") + "; "+ err_message, db_connect_result=db_connect_result, name=socket.gethostname(), color=color)
-       
+        color = '#ff3f3f'
+
+    return render_template("default.html",color=color, err_message=err_message, connected=db_connect_result, debug = f"Environment Variables: DB_Name: {DB_Name or 'NOT SET'} - hostname {socket.gethostname()}" )
+
 
 if __name__:
-    app.run("0.0.0.0", 8080)
-    
+    app.run("0.0.0.0",8080)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# from db.db import Database
-
-
-# if __name__ == "__main__":
-#     try:
-#         db = Database("tracker-issue-own-3", "postgres", "192.168.1.172", "1234", "5432")
-#         db.connect()
-#         rows = db.execute_query("""SELECT * FROM "Issue";""")
-#         if rows:
-#             for row in rows:
-#                 print(row)
-#     except Exception as e:
-#         print(e)
+# if __name__:
+#     db_handler = DatabaseHandler("tracker-issue-own-3", "postgres", "1234","192.168.1.172", "5432")
+#     db_handler.connect()
+#     rows = db_handler.execute_query("""SELECT * FROM "Issue";""")
+#     if rows:
+#         for row in rows:
+#             print(row)
+#     db_handler.close()

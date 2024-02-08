@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: dp-secrets-v1
+  name: dp-secrets-v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dp-secrets-v1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: dp-secrets-v1
+    spec:
+      containers:
+      - image: robsonlab.azurecr.io/webapp-secrets:v1
+        name: webapp-secrets
+        ports:
+        - containerPort: 8080
+        envFrom:
+         - secretRef:
+            name: webappv1
+status: {}

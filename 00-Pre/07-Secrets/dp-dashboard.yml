@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: dp-dashboard
+  name: dp-dashboard
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dp-dashboard
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: dp-dashboard
+    spec:
+      serviceAccountName: dashboard-sa
+      containers:
+      - image: nginx
+        name: nginx
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: dp-webapp-frontend-v2
+  name: dp-webapp-frontend-v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dp-webapp-frontend-v2
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: dp-webapp-frontend-v2
+    spec:
+      containers:
+      - image: robsonlab.azurecr.io/webapp-frontend:v2
+        name: webapp-frontend
+        ports:
+        - containerPort: 3000
+        resources: {}
+status: {}
