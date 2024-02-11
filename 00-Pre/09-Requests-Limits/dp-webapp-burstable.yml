@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: dp-webapp-burstable
+  name: dp-webapp-burstable
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dp-webapp-burstable
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: dp-webapp-burstable
+    spec:
+      containers:
+      - image: robsonlab.azurecr.io/webapp-frontend:v2
+        name: webapp-frontend
+        ports:
+        - containerPort: 3000
+        resources:
+           requests:
+             cpu: 1
+status: {}

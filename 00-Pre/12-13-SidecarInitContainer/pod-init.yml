@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: init-warmup
+  name: init-pod
+spec:
+  containers:
+  - image: robsonlab.azurecr.io/webapp-frontend:v2
+    name: frontend
+    ports:
+     - containerPort: 3000 
+  initContainers:
+  - image: busybox
+    name: init-warmup
+    command: ["sleep","10"]  
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

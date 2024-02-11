@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: liveness
+  creationTimestamp: null
+  labels:
+    run: webapp-01
+    app: liveness  
+  name: webapp-01
+spec:
+  containers:
+  - image: robsonlab.azurecr.io/webapp-liveness:v3
+    name: webapp-01
+    ports:
+    - containerPort: 8080
+    resources: {}
+    livenessProbe:
+     httpGet:
+      path: /live
+      port: 8080
+     periodSeconds: 1
+     initialDelaySeconds: 9  
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

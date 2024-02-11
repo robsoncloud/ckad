@@ -1,0 +1,1 @@
+kubectl exec --namespace=kube-public curl -- wget -qO- http://webapp-01.liveness.svc.cluster.local/crash

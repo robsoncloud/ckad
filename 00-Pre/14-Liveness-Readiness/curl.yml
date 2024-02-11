@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: curl
+  name: curl
+  namespace: kube-public
+spec:
+  containers:
+  - command:
+    - sleep
+    - "5000"
+    image: byrnedo/alpine-curl:latest
+    name: curl
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: no-exist-taint
+  name: no-exist-taint
+spec:
+  tolerations:
+    - key: kakfa
+      operator: Exists
+      effect: NoSchedule
+  containers:
+  - image: nginx
+    name: no-exist-taint
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

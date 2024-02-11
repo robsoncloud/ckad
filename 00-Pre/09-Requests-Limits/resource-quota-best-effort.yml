@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  creationTimestamp: null
+  name: best-effort
+  namespace: best-effort
+spec:
+  hard:
+    pods: "1"
+  scopes:
+  - BestEffort
+status: {}
